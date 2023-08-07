@@ -1,0 +1,39 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/projectSettingsUpdater.xml
+/contentModel.xml
+/.idea.CPMS.iml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+/CPMS.Api/obj/
+/CPMS.Api/obj/CPMS.Api.csproj.nuget.dgspec.json
+/CPMS.Api/obj/CPMS.Api.csproj.nuget.g.props
+/CPMS.Api/obj/CPMS.Api.csproj.nuget.g.targets
+/CPMS.Api/obj/Debug/net7.0/CPMS.Api.GlobalUsings.g.cs
+/CPMS.Api/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+/CPMS.Application/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+/CPMS.Domain/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+/CPMS.Persistence/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs
+/CPMS.Api/obj/Debug/net7.0/apphost
+/CPMS.Application/obj/Debug/net7.0/CPMS.Application.csproj.FileListAbsolute.txt
+/CPMS.Application/obj/CPMS.Application.csproj.nuget.g.props
+/CPMS.Application/obj/CPMS.Application.csproj.nuget.g.targets
+/CPMS.Application/obj/Debug/net7.0/CPMS.Application.GlobalUsings.g.cs
+/CPMS.Domain/obj/Debug/net7.0/CPMS.Domain.assets.cache
+/CPMS.Domain/obj/Debug/net7.0/CPMS.Domain.csproj.FileListAbsolute.txt
+/CPMS.Domain/obj/CPMS.Domain.csproj.nuget.dgspec.json
+/CPMS.Domain/obj/CPMS.Domain.csproj.nuget.g.props
+/CPMS.Domain/obj/CPMS.Domain.csproj.nuget.g.targets
+/CPMS.Domain/obj/Debug/net7.0/CPMS.Domain.GlobalUsings.g.cs
+CPMS.Application/obj/
+.idea/.idea.CPMS/.idea/
+CPMS.Domain/obj/Debug/
+CPMS.Domain/obj/
+CPMS.Persistence/obj/
+CPMS.Domain/bin/Debug/
