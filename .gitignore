@@ -37,3 +37,6 @@ CPMS.Domain/obj/Debug/
 CPMS.Domain/obj/
 CPMS.Persistence/obj/
 CPMS.Domain/bin/Debug/
+CPMS.Api/bin/Debug/
+CPMS.Application/bin/Debug/
+CPMS.Persistence/bin/Debug/
