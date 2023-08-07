@@ -2,7 +2,6 @@ using AutoMapper;
 using CPMS.Application.Common.Interfaces;
 using CPMS.Application.Common.Models;
 using CPMS.Application.Users.Queries.Dtos;
-using CPMS.Domain.Entities;
 using CPMS.Domain.Enums;
 using CPMS.Domain.IdentityEntities;
 using MediatR;
