@@ -28,7 +28,7 @@ public class User : IdentityUser<long>
 
     public DateTime CreatedAt { get; set; }
 
-    public Company Company { get; set; }
+    public Company? Company { get; set; }
 
 
     [IgnoreDataMember]

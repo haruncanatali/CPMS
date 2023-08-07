@@ -2,11 +2,13 @@ using AutoMapper;
 using CPMS.Application.Common.Interfaces;
 using CPMS.Application.Common.Models;
 using CPMS.Application.Users.Queries.Dtos;
+using CPMS.Domain.Entities;
 using CPMS.Domain.Enums;
 using CPMS.Domain.IdentityEntities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace CPMS.Application.Users.Commands.CreateUser;
 
@@ -22,6 +24,7 @@ public class CreateUserCommand : IRequest<UserDto>
     public string RoleName { get; set; }
     public long IdentificationNumber { get; set; }
     public Gender Gender { get; set; }
+    public long CompanyId { get; set; }
 
     public class Handler : IRequestHandler<CreateUserCommand, UserDto>
     {
@@ -69,6 +72,7 @@ public class CreateUserCommand : IRequest<UserDto>
                 Birthdate = request.Birthdate,
                 IdentificationNumber = request.IdentificationNumber,
                 Gender = request.Gender,
+                CompanyId = request.CompanyId,
                 RefreshToken = String.Empty,
                 RefreshTokenExpiredTime = DateTime.Now,
             };
@@ -88,6 +92,9 @@ public class CreateUserCommand : IRequest<UserDto>
                     await _userManager.AddToRoleAsync(entity, "Normal");
                 }
             }
+            
+            entity.Company = await _context.Companies
+                .FirstOrDefaultAsync(c=>c.Id == request.CompanyId,cancellationToken);
 
             result = _mapper.Map<UserDto>(entity);
             
