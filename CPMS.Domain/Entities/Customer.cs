@@ -14,6 +14,7 @@ public class Customer : BaseEntity
     public string DriverLicenseNumber { get; set; }
     public string ProfilePhoto { get; set; }
     public Gender Gender { get; set; }
+    public string Phone { get; set; }
 
     public List<Vehicle> Vehicles { get; set; }
 }

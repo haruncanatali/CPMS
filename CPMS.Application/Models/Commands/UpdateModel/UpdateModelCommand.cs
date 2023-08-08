@@ -30,6 +30,7 @@ public class UpdateModelCommand : IRequest<Unit>
                 model.BrandId = request.BrandId;
                 model.Name = request.Name;
 
+                _context.Models.Update(model);
                 await _context.SaveChangesAsync(cancellationToken);
             }
             

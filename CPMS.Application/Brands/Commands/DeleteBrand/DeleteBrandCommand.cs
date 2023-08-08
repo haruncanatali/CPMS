@@ -27,6 +27,7 @@ public class DeleteBrandCommand : IRequest<Unit>
             if (brand != null)
             {
                 brand.EntityStatus = EntityStatus.Passive;
+                _context.Brands.Update(brand);
                 await _context.SaveChangesAsync(cancellationToken);
             }
             

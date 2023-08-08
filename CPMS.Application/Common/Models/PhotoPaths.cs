@@ -4,4 +4,5 @@ public class PhotoPaths
 {
     public static readonly string UserProfilePhotoPath = "UserProfilePhotos";
     public static readonly string VehicleImagePath = "VehicleImagePath";
+    public static readonly string CustomerImagePath = "CustomerImagePath";
 }

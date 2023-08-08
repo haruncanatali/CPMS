@@ -23,12 +23,4 @@
       <ProjectReference Include="..\CPMS.Domain\CPMS.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Customers\Commands\CreateCustomer\" />
-      <Folder Include="Customers\Commands\DeleteCustomer\" />
-      <Folder Include="Customers\Commands\UpdateCustomer\" />
-      <Folder Include="Customers\Queries\GetCustomers\" />
-      <Folder Include="Customers\Queries\GetCustomer\" />
-    </ItemGroup>
-
 </Project>

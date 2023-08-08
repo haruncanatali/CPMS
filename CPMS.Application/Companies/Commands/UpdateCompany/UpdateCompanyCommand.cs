@@ -27,6 +27,7 @@ public class UpdateCompanyCommand : IRequest<Unit>
             if (company != null)
             {
                 company.Name = request.Name;
+                _context.Companies.Update(company);
                 await _context.SaveChangesAsync(cancellationToken);
             }
             

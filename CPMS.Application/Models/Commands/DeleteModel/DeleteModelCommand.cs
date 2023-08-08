@@ -27,6 +27,7 @@ public class DeleteModelCommand : IRequest<Unit>
             if (model != null)
             {
                 model.EntityStatus = EntityStatus.Passive;
+                _context.Models.Update(model);
                 await _context.SaveChangesAsync(cancellationToken);
             }
             

@@ -27,6 +27,7 @@ public class DeleteVehicleCommand : IRequest<Unit>
             if (vehicle != null)
             {
                 vehicle.EntityStatus = EntityStatus.Passive;
+                _context.Vehicles.Update(vehicle);
                 await _context.SaveChangesAsync(cancellationToken);
             }
             

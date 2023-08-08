@@ -27,6 +27,7 @@ public class DeleteCompanyCommand : IRequest<Unit>
             if (company != null)
             {
                 company.EntityStatus = EntityStatus.Passive;
+                _context.Companies.Update(company);
                 await _context.SaveChangesAsync(cancellationToken);
             }
             

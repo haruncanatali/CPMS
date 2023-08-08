@@ -1,16 +1,16 @@
 using CPMS.Application.Common.Interfaces;
 using CPMS.Domain.Entities;
+using CPMS.Domain.Enums;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace CPMS.Application.Brands.Commands.UpdateBrand;
+namespace CPMS.Application.Customers.Commands.DeleteCustomer;
 
-public class UpdateBrandCommand : IRequest<Unit>
+public class DeleteCustomerCommand : IRequest<Unit>
 {
     public long Id { get; set; }
-    public string Name { get; set; }
-
-    public class Handler : IRequestHandler<UpdateBrandCommand, Unit>
+    
+    public class Handler : IRequestHandler<DeleteCustomerCommand,Unit>
     {
         private readonly IApplicationContext _context;
 
@@ -19,15 +19,15 @@ public class UpdateBrandCommand : IRequest<Unit>
             _context = context;
         }
 
-        public async Task<Unit> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
         {
-            Brand? brand = await _context.Brands
+            Customer? customer = await _context.Customers
                 .FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
 
-            if (brand != null)
+            if (customer != null)
             {
-                brand.Name = request.Name;
-                _context.Brands.Update(brand);
+                customer.EntityStatus = EntityStatus.Passive;
+                _context.Customers.Update(customer);
                 await _context.SaveChangesAsync(cancellationToken);
             }
             
