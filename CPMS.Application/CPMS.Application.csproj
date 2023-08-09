@@ -23,4 +23,8 @@
       <ProjectReference Include="..\CPMS.Domain\CPMS.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Settings\Commands\" />
+    </ItemGroup>
+
 </Project>

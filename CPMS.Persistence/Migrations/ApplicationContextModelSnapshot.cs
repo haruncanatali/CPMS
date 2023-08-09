@@ -68,6 +68,10 @@ namespace CPMS.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -82,6 +86,12 @@ namespace CPMS.Persistence.Migrations
 
                     b.Property<int>("EntityStatus")
                         .HasColumnType("int");
+
+                    b.Property<double>("Lat")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Lon")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -218,6 +228,9 @@ namespace CPMS.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -247,6 +260,8 @@ namespace CPMS.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.ToTable("ParkPrices");
                 });
 
@@ -257,6 +272,9 @@ namespace CPMS.Persistence.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -287,6 +305,8 @@ namespace CPMS.Persistence.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("ParkingLots");
                 });
@@ -354,6 +374,9 @@ namespace CPMS.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -390,6 +413,8 @@ namespace CPMS.Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.HasIndex("ParkingServiceId");
 
                     b.ToTable("ServicePrices");
@@ -402,6 +427,9 @@ namespace CPMS.Persistence.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -432,6 +460,8 @@ namespace CPMS.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Settings");
                 });
@@ -750,6 +780,28 @@ namespace CPMS.Persistence.Migrations
                     b.Navigation("Brand");
                 });
 
+            modelBuilder.Entity("CPMS.Domain.Entities.ParkPrice", b =>
+                {
+                    b.HasOne("CPMS.Domain.Entities.Company", "Company")
+                        .WithMany("ParkPrices")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("CPMS.Domain.Entities.ParkingLot", b =>
+                {
+                    b.HasOne("CPMS.Domain.Entities.Company", "Company")
+                        .WithMany("ParkingLots")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
             modelBuilder.Entity("CPMS.Domain.Entities.ParkingService", b =>
                 {
                     b.HasOne("CPMS.Domain.Entities.ParkPrice", "ParkPrice")
@@ -779,9 +831,28 @@ namespace CPMS.Persistence.Migrations
 
             modelBuilder.Entity("CPMS.Domain.Entities.ServicePrice", b =>
                 {
+                    b.HasOne("CPMS.Domain.Entities.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CPMS.Domain.Entities.ParkingService", null)
                         .WithMany("ServicePrices")
                         .HasForeignKey("ParkingServiceId");
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("CPMS.Domain.Entities.Setting", b =>
+                {
+                    b.HasOne("CPMS.Domain.Entities.Company", "Company")
+                        .WithMany("Settings")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("CPMS.Domain.Entities.Vehicle", b =>
@@ -872,6 +943,12 @@ namespace CPMS.Persistence.Migrations
 
             modelBuilder.Entity("CPMS.Domain.Entities.Company", b =>
                 {
+                    b.Navigation("ParkPrices");
+
+                    b.Navigation("ParkingLots");
+
+                    b.Navigation("Settings");
+
                     b.Navigation("Users");
                 });
 

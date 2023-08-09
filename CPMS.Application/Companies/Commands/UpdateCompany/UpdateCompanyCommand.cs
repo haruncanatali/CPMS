@@ -9,6 +9,9 @@ public class UpdateCompanyCommand : IRequest<Unit>
 {
     public long Id { get; set; }
     public string Name { get; set; }
+    public string Address { get; set; }
+    public double Lat { get; set; }
+    public double Lon { get; set; }
 
     public class Handler : IRequestHandler<UpdateCompanyCommand, Unit>
     {
@@ -27,6 +30,10 @@ public class UpdateCompanyCommand : IRequest<Unit>
             if (company != null)
             {
                 company.Name = request.Name;
+                company.Address = request.Address;
+                company.Lat = request.Lat;
+                company.Lon = request.Lon;
+
                 _context.Companies.Update(company);
                 await _context.SaveChangesAsync(cancellationToken);
             }

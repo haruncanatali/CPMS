@@ -7,6 +7,9 @@ namespace CPMS.Application.Companies.Commands.CreateCompany;
 public class CreateCompanyCommand : IRequest<Unit>
 {
     public string Name { get; set; }
+    public string Address { get; set; }
+    public double Lat { get; set; }
+    public double Lon { get; set; }
 
     public class Handler : IRequestHandler<CreateCompanyCommand, Unit>
     {
@@ -21,8 +24,11 @@ public class CreateCompanyCommand : IRequest<Unit>
         {
             await _context.Companies.AddAsync(new Company
             {
-                Name = request.Name
-            });
+                Name = request.Name,
+                Address = request.Address,
+                Lat = request.Lat,
+                Lon = request.Lon
+            },cancellationToken);
 
             await _context.SaveChangesAsync(cancellationToken);
             
