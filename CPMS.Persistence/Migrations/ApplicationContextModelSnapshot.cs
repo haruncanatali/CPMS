@@ -319,6 +319,9 @@ namespace CPMS.Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -356,6 +359,8 @@ namespace CPMS.Persistence.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
 
                     b.HasIndex("ParkPriceId");
 
@@ -804,6 +809,12 @@ namespace CPMS.Persistence.Migrations
 
             modelBuilder.Entity("CPMS.Domain.Entities.ParkingService", b =>
                 {
+                    b.HasOne("CPMS.Domain.Entities.Company", "Company")
+                        .WithMany("ParkingServices")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("CPMS.Domain.Entities.ParkPrice", "ParkPrice")
                         .WithMany()
                         .HasForeignKey("ParkPriceId")
@@ -821,6 +832,8 @@ namespace CPMS.Persistence.Migrations
                         .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Company");
 
                     b.Navigation("ParkPrice");
 
@@ -946,6 +959,8 @@ namespace CPMS.Persistence.Migrations
                     b.Navigation("ParkPrices");
 
                     b.Navigation("ParkingLots");
+
+                    b.Navigation("ParkingServices");
 
                     b.Navigation("Settings");
 

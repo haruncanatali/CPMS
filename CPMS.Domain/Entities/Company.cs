@@ -10,9 +10,10 @@ public class Company : BaseEntity
 
     public double Lat { get; set; }
     public double Lon { get; set; }
-
+    
     public List<ParkingLot> ParkingLots { get; set; }
     public List<ParkPrice> ParkPrices { get; set; }
     public List<Setting> Settings { get; set; }
+    public List<ParkingService> ParkingServices { get; set; }
     public List<User> Users { get; set; }
 }
